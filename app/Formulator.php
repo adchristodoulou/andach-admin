@@ -28,7 +28,7 @@ class Formulator extends Model
 
     public function constuctOpeningForm()
     {
-    	$return = '<form action="'.$this->getSetupValue('action').'" autocomplete="'.$this->getSetupValue('autocomplete').'" enctype="'.$this->getFormEnctype().'" method="'.$this->getFormMethod().'" name="'.$this->getSetupValue('name').'" target="'.$this->getSetupValue('target').'">';
+    	$return = '<form action="'.$this->getFormAction().'" autocomplete="'.$this->getSetupValue('autocomplete').'" enctype="'.$this->getFormEnctype().'" method="'.$this->getFormMethod().'" name="'.$this->getSetupValue('name').'" target="'.$this->getSetupValue('target').'">';
         $return .= csrf_field();
 
         return $return;
@@ -43,6 +43,15 @@ class Formulator extends Model
         }
         $return .= '</form>';
         return $return;
+    }
+
+    public function getFormAction()
+    {
+    	if ($this->getSetupValue('route'))
+    	{
+    		return route($this->getSetupValue('route'));
+    	}
+    	return $this->getSetupValue('action');
     }
 
     public function getFormEnctype()
