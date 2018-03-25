@@ -22,6 +22,8 @@ class InitialDocumentsTables extends Migration
             $table->date('date_of_document')->nullable();
             $table->date('date_of_upload')->nullable();
             $table->integer('uploaded_by_id')->nullable();
+            $table->integer('previous_document_id')->nullable();
+            $table->integer('subsequent_document_id')->nullable();
             $table->timestamps();
         });
 
