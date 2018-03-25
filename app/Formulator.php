@@ -49,7 +49,7 @@ class Formulator extends Model
     {
     	if ($this->getSetupValue('route'))
     	{
-    		return route($this->getSetupValue('route'));
+    		return route($this->getSetupValue('route'), $this->getSetupValue('routeArray'));
     	}
     	return $this->getSetupValue('action');
     }
