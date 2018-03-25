@@ -2,18 +2,39 @@
 
 namespace App\Traits;
 
+use App\Document;
 use App\Formulator;
+use Auth;
+use Illuminate\Http\Request;
 
 trait Documented
 {
-	public function documentedIndexData()
+	public function addDocument($object, Request $request)
+	{
+		$data = $request->all();
+		$data['uploaded_by_id'] = Auth::id();
+
+		if ($request->file('document'))
+		{
+			$path = $request->file('document')->store('documents');
+			
+			$data['url']       = $path;
+			$data['extension'] = $request->file('document')->getClientOriginalExtension();
+		}
+
+		$document = new Document($data);
+
+		$object->documents()->save($document);
+	}
+
+	public function documentedIndexData($route)
 	{
 		$return = array();
 
 		$return['documents'] = $this->documents;
 		$return['name']      = $this->name;
 
-		$form = new Formulator([]);
+		$form = new Formulator(['route' => $route]);
 		$form->addElement(['type' => 'text', 'name' => 'name', 'title' => 'Name']);
 		$form->addElement(['type' => 'date', 'name' => 'date_of_document', 'title' => 'Document Date']);
 		$form->addElement(['type' => 'file', 'name' => 'document', 'title' => 'File to Upload']);

@@ -15,13 +15,13 @@ class InitialDocumentsTables extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
-            $table->string('url');
-            $table->string('extension');
-            $table->date('date_of_document');
-            $table->date('date_of_upload');
-            $table->integer('uploaded_by_id');
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
+            $table->string('url')->nullable();
+            $table->string('extension')->nullable();
+            $table->date('date_of_document')->nullable();
+            $table->date('date_of_upload')->nullable();
+            $table->integer('uploaded_by_id')->nullable();
             $table->timestamps();
         });
 

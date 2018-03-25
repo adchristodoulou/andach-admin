@@ -17,6 +17,6 @@ Route::get('/', function () {
 
 Route::get('form', 'PersonController@form');
 Route::get('documents', 'PersonController@documentsIndex');
-Route::get('person/documents/create', 'PersonController@documentsCreate')->name('person.documents.create');
+Route::post('person/documents/create', 'PersonController@documentsCreate')->name('person.documents.create');
 
 Auth::routes();

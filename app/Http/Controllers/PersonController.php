@@ -11,16 +11,18 @@ class PersonController extends Controller
 {
     //use DocumentedController;
 
-    function documentsCreate()
+    function documentsCreate(Request $request)
     {
-        
+        $person = Person::find(1);
+
+        $person->addDocument($person, $request);
     }
 
 	function documentsIndex()
 	{
 		$person = Person::find(1);
 
-		return view('traits.documented.index', ['traitdata' => $person->documentedIndexData()]);
+		return view('traits.documented.index', ['traitdata' => $person->documentedIndexData('person.documents.create')]);
 	}
 
     function form()
