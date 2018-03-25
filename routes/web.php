@@ -13,6 +13,8 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
+Route::get('form', 'PersonController@form');
 
 Auth::routes();
