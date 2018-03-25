@@ -1,0 +1,1 @@
+php phpDocumentor.phar -d . -t docs/api --ignore "vendor/,build/"
