@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Formulator;
+use App\Person;
+use App\Traits\DocumentedController;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
+    //use DocumentedController;
+
+    function documentsCreate()
+    {
+        
+    }
+
 	function documentsIndex()
 	{
 		$person = Person::find(1);
 
-		return view('traits.documented.index', $person->documentedIndex());
+		return view('traits.documented.index', ['traitdata' => $person->documentedIndexData()]);
 	}
 
     function form()
