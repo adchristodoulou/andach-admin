@@ -15,12 +15,13 @@ class FormulatorElement extends Model
 
 	public function __construct($array)
 	{
-		$this->class = $array['class'] ?? '';
-		$this->id    = $array['id'] ?? '';
-		$this->name  = $array['name'] ?? '';
-		$this->title = $array['title'] ?? '';
-		$this->type  = $array['type'] ?? '';
-		$this->value = $array['value'] ?? '';
+		$this->checked = $array['checked'] ?? '';
+		$this->class   = $array['class'] ?? '';
+		$this->id      = $array['id'] ?? '';
+		$this->name    = $array['name'] ?? '';
+		$this->title   = $array['title'] ?? '';
+		$this->type    = $array['type'] ?? '';
+		$this->value   = $array['value'] ?? '';
 	}
 
 	public function debug()
@@ -29,8 +30,18 @@ class FormulatorElement extends Model
 		dd($array);
 	}
 
-    public function display()
+    public function display($autogenerateLabels = true, $autogenerateClasses = '')
     {
+    	if ($autogenerateLabels)
+    	{
+    		$this->id = $this->name;
+    	}
+
+    	if ($autogenerateClasses)
+    	{
+    		$this->class .= ' '.$autogenerateClasses;
+    	}
+
     	switch ($this->type)
     	{
     		case 'checkbox' :
@@ -39,6 +50,8 @@ class FormulatorElement extends Model
     		case 'email' :
     		case 'hidden' :
     		case 'password' :
+    		case 'radio' :
+    		case 'select' :
     		case 'submit' :
     		case 'text':
     			return '<div class="row"><div class="col-2"><label for="'.$this->id.'"">'.$this->title.'</label></div><div class="col-10">
@@ -77,13 +90,58 @@ class FormulatorElement extends Model
     			return '<input class="'.$this->class.'" id="'.$this->id.'" name="'.$this->name.'" type="'.$this->type.'" value="'.$this->value.'" />';
     			break;
 
+    		case 'radio' :
+    			return implode($this->displayElementItems(), '<br />');
+    			break;
+
+    		case 'select' :
+    			return '<select  class="'.$this->class.'" id="'.$this->id.'" name="'.$this->name.'">'.implode($this->displayElementItems()).'</select>';
+    			break;
+
     		case 'textarea' :
-    			return '<textarea class="'.$this->class.'" id="'.$this->id.'" name="'.$this->name.'" type="'.$this->type.'">'.$this->value.'</textarea>';
+    			return '<textarea class="'.$this->class.'" id="'.$this->id.'" name="'.$this->name.'">'.$this->value.'</textarea>';
     			break;
 
     		default:
     			return 'unsupported item type "'.$this->type.'"';
     			break;
     	}
+    }
+
+    /**
+     * Used for the display of items like radios and selects which require an array of values. 
+     * @return type
+     */
+    public function displayElementItems()
+    {
+    	$return = array();
+
+    	if ($this->type == 'radio')
+    	{
+    		foreach ($this->value as $key => $value)
+    		{
+    			if ($key == $this->checked)
+    			{
+    				$checked = ' checked="checked"';
+    			} else {
+    				$checked = '';
+    			}
+
+    			$return[] = '<input type="radio" name="'.$this->name.'" value="'.$key.'"'.$checked.'>'.$value;
+    		}
+    	} elseif ($this->type == 'select') {
+    		foreach ($this->value as $key => $value)
+    		{
+    			if ($key == $this->checked)
+    			{
+    				$checked = ' selected="selected"';
+    			} else {
+    				$checked = '';
+    			}
+    			$return[] = '<option name="'.$this->name.'" value="'.$key.'"'.$checked.'>'.$value.'</option>';
+    		}
+    	}
+
+    	return $return;
     }
 }

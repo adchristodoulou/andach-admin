@@ -39,7 +39,7 @@ class Formulator extends Model
         $return = $this->constuctOpeningForm();
         foreach ($this->elements as $element)
         {
-        	$return .= $element->display();
+        	$return .= $element->display($this->autogenerateLabels, $this->autogenerateClasses);
         }
         $return .= '</form>';
         return $return;

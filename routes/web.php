@@ -16,5 +16,6 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('form', 'PersonController@form');
+Route::get('documents', 'PersonController@documentsIndex');
 
 Auth::routes();

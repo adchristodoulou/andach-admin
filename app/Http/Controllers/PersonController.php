@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
+	function documentsIndex()
+	{
+		$person = Person::find(1);
+
+		return view('traits.documented.index', $person->documentedIndex());
+	}
+
     function form()
     {
     	$form = new Formulator();
@@ -15,6 +22,9 @@ class PersonController extends Controller
     	$form->addElement(['type' => 'password', 'name' => 'l26262ol', 'value' => 'a', 'title' => 'password2']);
     	$form->addElement(['type' => 'hidden', 'name' => 'loasfl', 'value' => 'asfg']);
     	$form->addElement(['type' => 'textarea', 'name' => 'lasfol', 'value' => 'ass', 'title' => 'big text areas']);
+    	$form->addElement(['type' => 'radio', 'name' => 'la3jh3j45jsfol', 'value' => array(1 => 'first radio', 2 => 'second radio'), 'title' => 'big text areas', 'checked' => 1]);
+    	$form->addElement(['type' => 'select', 'name' => 'lasfowerwl', 'value' => array(1 => 'first seelect', 2 => 'second seelect'), 'title' => 'big text areas', 'checked' => 2]);
+    	$form->addElement(['type' => 'submit', 'name' => 'lol456', 'value' => 'a', 'title' => 'SUBMIZZLE']);
 
     	return view('person.form', ['form' => $form]);
     }
