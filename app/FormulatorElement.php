@@ -48,11 +48,11 @@ class FormulatorElement extends Model
     		case 'color' :
     		case 'date' :
     		case 'email' :
+            case 'file' :
     		case 'hidden' :
     		case 'password' :
     		case 'radio' :
     		case 'select' :
-    		case 'submit' :
     		case 'text':
     			return '<div class="row"><div class="col-2"><label for="'.$this->id.'"">'.$this->title.'</label></div><div class="col-10">
 			    	'.$this->displayElement().'
@@ -62,6 +62,12 @@ class FormulatorElement extends Model
     		case 'hidden' :
     			return $this->displayElement();
     			break;
+
+            case 'submit' :
+                return '<div class="row"><div class="col-12">
+                    '.$this->displayElement().'
+                    </div></div>';
+                break;
 
     		case 'textarea' :
     			return '<div class="row"><div class="col-12"><label for="'.$this->id.'"">'.$this->title.'</label></div><div class="col-12">
@@ -77,12 +83,18 @@ class FormulatorElement extends Model
 
     public function displayElement()
     {
+        if ($this->type == 'file')
+        {
+            $this->class = 'form-control-file';
+        }
+
     	switch ($this->type)
     	{
     		case 'checkbox' :
     		case 'color' :
     		case 'date' :
     		case 'email' :
+            case 'file' :
     		case 'hidden' :
     		case 'password' :
     		case 'submit' :
@@ -143,5 +155,10 @@ class FormulatorElement extends Model
     	}
 
     	return $return;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 }

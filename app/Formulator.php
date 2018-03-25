@@ -11,7 +11,7 @@ class Formulator extends Model
     protected $model;
     protected $setup;
 
-    public function __construct($model = null, $setup = array())
+    public function __construct($setup, $model = null)
     {
     	$this->autogenerateClasses = 'form-control';
         $this->autogenerateLabels = true;
@@ -47,8 +47,14 @@ class Formulator extends Model
 
     public function getFormEnctype()
     {
+        foreach ($this->elements as $element)
+        {
+            if ($element->getType() == 'file')
+            {
+                return 'multipart/form-data';
+            }
+        }
     	return 'application/x-www-form-urlencoded';
-    	return 'multipart/form-data';
     }
 
 	public function getFormMethod()
