@@ -24,8 +24,12 @@ class InitialDocumentsTables extends Migration
             $table->integer('uploaded_by_id')->nullable();
             $table->integer('previous_document_id')->nullable();
             $table->integer('subsequent_document_id')->nullable();
+            $table->boolean('is_revised');
+            $table->integer('number_of_revisions');
+            $table->integer('current_document_id')->nullable();
             $table->timestamps();
         });
+
 
         Schema::create('documenteds', function (Blueprint $table) {
             $table->increments('id');

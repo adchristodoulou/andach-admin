@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $fillable = ['name', 'description', 'url', 'extension', 'date_of_document', 'date_of_upload', 'uploaded_by_id'];
+    protected $fillable = ['name', 'description', 'url', 'extension', 'date_of_document', 'date_of_upload', 'uploaded_by_id', 'is_revised', 'number_of_revisions', 'current_document_id'];
     protected $table = 'documents';
 
     public function getBoxAttribute()
@@ -35,12 +35,33 @@ class Document extends Model
 
     public function getUploaderNameAttribute()
     {
-        if ($this->uploaderPerson)
+        if ($this->uploaderPerson())
         {
             return $this->uploaderPerson->name;
         }
 
         return '#UNKNOWN USER#';
+    }
+
+    /**
+     * Makes a given document a revision of a previous one. 
+     * @param type $previousDocumentID 
+     * @return type
+     */
+    public function linkTo($previousDocumentID)
+    {
+        $previousDocument = Document::find($previousDocumentID);
+
+        $this->previous_document_id = $previousDocument->id;
+        $this->number_of_revisions  = $previousDocument->number_of_revisions + 1;
+
+        $previousDocument->subsequent_document_id = $this->id;
+        $previousDocument->is_revised             = 1;
+        $previousDocument->number_of_revisions    = $previousDocument->number_of_revisions + 1;
+        $previousDocument->current_document_id    = $this->id;
+
+        $this->save();
+        $previousDocument->save();
     }
 
     public function people()
@@ -50,7 +71,12 @@ class Document extends Model
 
     public function uploaderPerson()
     {
-        return $this->uploaderUser->belongsTo('App\Person', 'person_id');
+        if ($this->uploaderUser)
+        {
+            return $this->uploaderUser->belongsTo('App\Person', 'person_id');
+        }
+
+        return null;
     }
 
     public function uploaderUser()
