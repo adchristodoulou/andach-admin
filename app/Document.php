@@ -14,7 +14,7 @@ class Document extends Model
     	return '<div class="row"><div class="col-12"><div class="card">
     		<div class="card-header">Document uploaded on '.$this->date_created.' by '.$this->uploader_name.'</div>
     		<div class="card-body">'.$this->description_and_document.'</div>
-    		<div class="card-footer">Revisions</div>
+    		<div class="card-footer"><a href="'.route('document.edit', $this->id).'">Edit or Replace</a> <a href="'.route('document.edit', $this->id).'">Delete</a></div>
     		</div></div></div>';
     }
 
