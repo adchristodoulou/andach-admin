@@ -30,7 +30,7 @@ class FormulatorElement extends Model
 		dd($array);
 	}
 
-    public function display($autogenerateLabels = true, $autogenerateClasses = '')
+    public function display($autogenerateLabels = true, $autogenerateClasses = '', $overwriteBlankValue = '')
     {
     	if ($autogenerateLabels)
     	{
@@ -40,6 +40,11 @@ class FormulatorElement extends Model
     	if ($autogenerateClasses)
     	{
     		$this->class .= ' '.$autogenerateClasses;
+    	}
+
+    	if ($this->value == '')
+    	{
+    		$this->value = $overwriteBlankValue;
     	}
 
     	switch ($this->type)
@@ -155,6 +160,11 @@ class FormulatorElement extends Model
     	}
 
     	return $return;
+    }
+
+    public function getName()
+    {
+    	return $this->name;
     }
 
     public function getType()

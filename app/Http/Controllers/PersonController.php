@@ -15,7 +15,7 @@ class PersonController extends Controller
     {
         $person = Person::find(1);
 
-        $person->addDocument($person, $request);
+        $person->addDocument($request);
     }
 
 	function documentsIndex()

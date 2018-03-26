@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 trait Documented
 {
-	public function addDocument($object, Request $request, $previousDocumentID = null)
+	public function addDocument(Request $request, $previousDocumentID = null)
 	{
 		$data = $request->all();
 		$data['uploaded_by_id'] = Auth::id();
@@ -27,14 +27,15 @@ trait Documented
 
 		$document = new Document($data);
 
+		$this->documents()->save($document);
+
+		$document->current_document_id = $document->id;
+		$document->save();
+
 		if ($previousDocumentID)
 		{
 			$document->linkTo($previousDocumentID);
 		}
-
-		$object->documents()->save($document);
-		$document->current_document_id = $document->id;
-		$document->save();
 	}
 
 	public function documentedIndexData($route)
