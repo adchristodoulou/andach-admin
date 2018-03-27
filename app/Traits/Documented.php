@@ -11,19 +11,7 @@ trait Documented
 {
 	public function addDocument(Request $request, $previousDocumentID = null)
 	{
-		$data = $request->all();
-		$data['uploaded_by_id'] = Auth::id();
-
-		if ($request->file('document'))
-		{
-			$path = $request->file('document')->store('documents');
-			
-			$data['url']       = $path;
-			$data['extension'] = $request->file('document')->getClientOriginalExtension();
-		}
-
-		$data['is_revised']          = 0;
-		$data['number_of_revisions'] = 0;
+		$data = Document::upload($request);
 
 		$document = new Document($data);
 
