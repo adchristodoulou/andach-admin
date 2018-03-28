@@ -75,7 +75,6 @@ class Document extends Model
      */
     public function linkTo($previousDocument)
     {
-        //dd($this);
         Document::where('current_document_id', $previousDocument->current_document_id)->update(['current_document_id' => $this->id]);
 
         $this->previous_document_id = $previousDocument->id;

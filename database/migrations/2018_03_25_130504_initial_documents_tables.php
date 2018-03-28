@@ -48,6 +48,6 @@ class InitialDocumentsTables extends Migration
     public function down()
     {
         Schema::dropIfExists('documents');
-        Schema::dropIfExists('documented');
+        Schema::dropIfExists('documenteds');
     }
 }
