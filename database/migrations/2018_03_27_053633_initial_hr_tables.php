@@ -276,7 +276,7 @@ class InitialHrTables extends Migration
             $table->boolean('can_manage_holiday')->nullable();
         });
 
-        Schema::create('sites', function (Blueprint $table) {
+        Schema::create('reporting_units', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
             $table->integer('company_id');
@@ -285,10 +285,10 @@ class InitialHrTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('sites_salary_areas', function (Blueprint $table) {
+        Schema::create('reporting_units_areas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->integer('site_id');
+            $table->integer('reporting_unit_id');
             $table->integer('company_id');
             $table->timestamps();
         });
@@ -338,8 +338,8 @@ class InitialHrTables extends Migration
         Schema::dropIfExists('link_jobs_allowed_contracts');
         Schema::dropIfExists('person_documents_check');
         Schema::dropIfExists('positions');
-        Schema::dropIfExists('sites');
-        Schema::dropIfExists('sites_salary_areas');
+        Schema::dropIfExists('reporting_units');
+        Schema::dropIfExists('reporting_units_areas');
         Schema::dropIfExists('working_hours');
     }
 }
