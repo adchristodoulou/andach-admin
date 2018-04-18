@@ -17,6 +17,7 @@ class Formulator extends Model
         $this->autogenerateLabels = true;
         $this->model = $model;
 		$this->setup = $setup;
+        $this->elements = [];
     }
 
     public function addElement($array = array())
@@ -75,6 +76,7 @@ class Formulator extends Model
                 return 'multipart/form-data';
             }
         }
+        
     	return 'application/x-www-form-urlencoded';
     }
 

@@ -32,9 +32,4 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Person', 'person_id');
     }
-
-    public function selectedCompany()
-    {
-        return Cookie::get()
-    }
 }

@@ -10,13 +10,13 @@ class CostCodeController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('choosecompany');
+		$this->middleware('auth');
 	}
 
     public function create()
     {
     	$form = new Formulator(['route' => 'document.delete-post']);
-    	$form->addElementsFromModel(CostCode::class);
+    	
 
     	return view('shared.form', ['form' => $form]);
     }
