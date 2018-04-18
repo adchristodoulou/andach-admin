@@ -110,10 +110,6 @@
       @endif
     @endif
 
-    <div class="container" style="background-color: #e9ecef">
-      @yield('breadcrumbs')
-    </div>
-
     <!-- Page Content -->
     <div class="container" id="contentcontainer">
       @yield('content')

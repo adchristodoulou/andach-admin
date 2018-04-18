@@ -20,4 +20,11 @@ class CostCodeController extends Controller
 
     	return view('shared.form', ['form' => $form]);
     }
+
+    public function index()
+    {
+        $costcodes = CostCode::nested()->get();
+
+        return view('costcode.index', ['costcodes' => $costcodes]);
+    }
 }
