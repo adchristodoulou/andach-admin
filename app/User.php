@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cookie;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -30,5 +31,10 @@ class User extends Authenticatable
     public function person()
     {
         return $this->belongsTo('App\Person', 'person_id');
+    }
+
+    public function selectedCompany()
+    {
+        return Cookie::get()
     }
 }

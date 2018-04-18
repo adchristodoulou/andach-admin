@@ -24,4 +24,14 @@ Route::post('document/{id}/delete-post', 'DocumentController@deletePost')->name(
 Route::get('document/{id}/edit', 'DocumentController@edit')->name('document.edit');
 Route::post('document/edit-post', 'DocumentController@editPost')->name('document.edit-post');
 
+Route::get('contract', 'ContractController@index')->name('contract.index');
+Route::get('costcode', 'CostCodeController@create')->name('costcode.index');
+Route::get('job', 'JobController@index')->name('job.index');
+Route::get('jobgrade', 'JobGradeController@index')->name('jobgrade.index');
+Route::get('position', 'PositionController@index')->name('position.index');
+Route::get('reportingunit', 'ReportingUnitController@index')->name('reportingunit.index');
+Route::get('reportingunitarea', 'ReportingUnitAreaController@index')->name('reportingunitarea.index');
+
+Route::get('company/choose', 'CompanyController@choose')->name('company.choose');
+
 Auth::routes();

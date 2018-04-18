@@ -51,13 +51,22 @@
                 <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/about-us">About</a>
+                <a class="nav-link" href="{{ route('costcode.index') }}">Cost Codes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact</a>
+                <a class="nav-link" href="{{ route('job.index') }}">Jobs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/open-source">Open Source</a>
+                <a class="nav-link" href="{{ route('jobgrade.index') }}">Job Grades</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('position.index') }}">Positions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('reportingunit.index') }}">Reporting Units</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('reportingunitarea.index') }}">Reporting Unit Areas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('login') }}">Login</a>
