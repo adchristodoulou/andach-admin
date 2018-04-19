@@ -10,4 +10,6 @@ class ReportingUnitArea extends Model
 {
     use BelongsToCompany;
     use BelongsToReportingUnit;
+
+    protected $table = 'reporting_units_areas';
 }
