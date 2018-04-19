@@ -288,7 +288,6 @@ class InitialHrTables extends Migration
         Schema::create('reporting_units_areas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->integer('reporting_unit_id');
             $table->integer('company_id');
             $table->timestamps();
         });
