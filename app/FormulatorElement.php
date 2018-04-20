@@ -47,22 +47,46 @@ class FormulatorElement extends Model
     		$this->value = $overwriteBlankValue;
     	}
 
+        if (old($this->name))
+        {
+            $this->value = old($this->name);
+        }
+
     	switch ($this->type)
     	{
-    		case 'checkbox' :
-    		case 'color' :
-    		case 'date' :
-    		case 'email' :
+            case 'block' :
+                return $this->displayElement();
+                break;
+
+            case 'checkbox' :
+            case 'color' :
+            case 'date' :
+            case 'email' :
             case 'file' :
-    		case 'hidden' :
-    		case 'password' :
-    		case 'radio' :
-    		case 'select' :
-    		case 'text':
-    			return '<div class="row"><div class="col-2"><label for="'.$this->id.'"">'.$this->title.'</label></div><div class="col-10">
-			    	'.$this->displayElement().'
-			    	</div></div>';
-    			break;
+            case 'hidden' :
+            case 'password' :
+            case 'radio' :
+            case 'select' :
+            case 'text':
+                return '<div class="row"><div class="col-2"><label for="'.$this->id.'"">'.$this->title.'</label></div><div class="col-10">
+                    '.$this->displayElement().'
+                    </div></div>';
+                break;
+
+            case 'leftcheckbox' :
+            case 'leftcolor' :
+            case 'leftdate' :
+            case 'leftemail' :
+            case 'leftfile' :
+            case 'lefthidden' :
+            case 'leftpassword' :
+            case 'leftradio' :
+            case 'leftselect' :
+            case 'lefttext':
+                return '<div class="row"><div class="col-2">
+                    '.$this->displayElement().'
+                    </div><div class="col-10"><label for="'.$this->id.'"">'.$this->title.'</label></div></div>';
+                break;
 
     		case 'hidden' :
     			return $this->displayElement();
@@ -81,7 +105,7 @@ class FormulatorElement extends Model
     			break;
 
     		default:
-    			return 'unsupported item type "'.$this->type.'"';
+    			return 'unsupported display type "'.$this->type.'"';
     			break;
     	}
     }
@@ -95,6 +119,10 @@ class FormulatorElement extends Model
 
     	switch ($this->type)
     	{
+            case 'block' :
+                return $this->value;
+                break;
+
     		case 'checkbox' :
     		case 'color' :
     		case 'date' :
@@ -106,6 +134,19 @@ class FormulatorElement extends Model
     		case 'text':
     			return '<input class="'.$this->class.'" id="'.$this->id.'" name="'.$this->name.'" type="'.$this->type.'" value="'.$this->value.'" />';
     			break;
+
+            case 'leftcheckbox' :
+            case 'leftcolor' :
+            case 'leftdate' :
+            case 'leftemail' :
+            case 'leftfile' :
+            case 'lefthidden' :
+            case 'leftpassword' :
+            case 'leftradio' :
+            case 'leftselect' :
+            case 'lefttext':
+                return '<input class="'.$this->class.'" id="'.$this->id.'" name="'.$this->name.'" type="'.substr($this->type, 4).'" value="'.$this->value.'" />';
+                break;
 
     		case 'radio' :
     			return implode($this->displayElementItems(), '<br />');

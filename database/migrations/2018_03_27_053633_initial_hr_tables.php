@@ -123,17 +123,16 @@ class InitialHrTables extends Migration
             $table->boolean('is_zero_hours')->nullable();
             $table->integer('notice_period_days');
             $table->decimal('overtime_multiplier', 8, 2);
-            $table->integer('pension_match_delay_months');
+            $table->integer('pension_match_delay_months')->default(0);
             $table->decimal('pension_match_up_to_percent', 8, 2);
             $table->decimal('pension_multipler', 8, 2);
-            $table->boolean('will_work_nights');
+            $table->boolean('will_work_nights')->nullable();
             $table->timestamps();
         });
 
         Schema::create('contracts_sick_pay', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('from_month');
-            $table->integer('to_month');
             $table->integer('weeks_sick_pay');
             $table->integer('contract_id');
             $table->timestamps();

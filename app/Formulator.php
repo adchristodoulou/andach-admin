@@ -54,7 +54,12 @@ class Formulator extends Model
         		$return .= $element->display($this->autogenerateLabels, $this->autogenerateClasses);
         	}
         }
-        $return .= '</form>';
+        
+        if (!$this->setup['dontcloseform'])
+        {
+            $return .= '</form>';
+        }
+        
         return $return;
     }
 

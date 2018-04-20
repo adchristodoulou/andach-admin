@@ -26,6 +26,8 @@ Route::post('document/edit-post', 'DocumentController@editPost')->name('document
 
 Route::get('company', 'CompanyController@index')->name('company.index');
 Route::get('contract', 'ContractController@index')->name('contract.index');
+Route::get('contract/create', 'ContractController@create')->name('contract.create');
+Route::post('contract/store', 'ContractController@store')->name('contract.store');
 Route::get('costcode', 'CostCodeController@index')->name('costcode.index');
 Route::get('job', 'JobController@index')->name('job.index');
 Route::get('jobgrade', 'JobGradeController@index')->name('jobgrade.index');
