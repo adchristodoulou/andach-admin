@@ -54,6 +54,9 @@
                 <a class="nav-link" href="{{ route('company.index') }}">Companies</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{{ route('contract.index') }}">Contracts</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route('costcode.index') }}">Cost Codes</a>
               </li>
               <li class="nav-item">
