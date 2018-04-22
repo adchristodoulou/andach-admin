@@ -121,7 +121,11 @@
 
    	<div class="row">
    		@foreach ($contracts as $contract)
-	   		<div class="col-2">{{ Form::checkbox('allowedContracts[]', $contract->id, null, ['class' => 'form-control']) }}</div>
+   			@if (isset($job))
+	   			<div class="col-2">{{ Form::checkbox('allowedContracts[]', $contract->id, $job->contracts->contains($contract->id), ['class' => 'form-control']) }}</div>
+	   		@else 
+				<div class="col-2">{{ Form::checkbox('allowedContracts[]', $contract->id, null, ['class' => 'form-control']) }}</div>
+	   		@endif
 	   		<div class="col-10">{{ $contract->name }}</div>
 	   	@endforeach
    	</div>

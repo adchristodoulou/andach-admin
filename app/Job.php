@@ -29,6 +29,6 @@ class Job extends Model
 
     public function setAuthorisedSalaries($salariesFrom, $salariesTo)
     {
-    	dd('need to work on this');
+    	//TODO: this
     }
 }

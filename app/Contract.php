@@ -9,6 +9,11 @@ class Contract extends Model
 {
     protected $fillable = ['name', 'annual_hours_holiday', 'bank_holidays_off', 'fte_hours_per_week', 'notice_period_days', 'overtime_multiplier', 'pension_match_delay_months', 'pension_match_up_to_percent', 'pension_multiplier', 'will_work_nights'];
 
+    public function jobs()
+    {
+        return $this->belongsToMany('App\Job', 'link_jobs_allowed_contracts', 'contract_id', 'job_id');
+    }
+
     public function sickPayPeriods()
     {
     	return $this->hasMany('App\ContractSickPay', 'contract_id');

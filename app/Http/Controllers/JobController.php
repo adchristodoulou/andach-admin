@@ -46,6 +46,16 @@ class JobController extends Controller
 
     public function update(Request $request)
     {
+        $checkboxes = ['requires_dbs_check_standard', 'requires_dbs_check_child_barred', 'requires_dbs_check_adult_barred', 'requires_dbs_check_extended', 'requires_criminal_information', 'requires_spent_criminal_information'];
+
+        foreach ($checkboxes as $value)
+        {
+            if (!isset($request->$value))
+            {
+                $request[$value] = 0;
+            }
+        }
+
         $job = Job::find($request->id);
         $job->update($request->all());
         $job->save();
