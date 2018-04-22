@@ -16,6 +16,8 @@ class Contract extends Model
 
     public function updateSickPay($from_months_array, $weeks_sick_pay_array)
     {
+        $array = array();
+
     	foreach ($from_months_array as $key => $months)
     	{
     		if (is_numeric($months))
@@ -26,6 +28,8 @@ class Contract extends Model
 
     	ContractSickPay::where('contract_id', $this->id)->delete();
 
+        if (count($array) == 0) return;
+        
     	foreach ($array as $months => $weeks)
     	{
     		$sickpay = ContractSickPay::create(['contract_id' => $this->id, 'from_month' => $months, 'weeks_sick_pay' => $weeks]);
