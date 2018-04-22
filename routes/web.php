@@ -24,6 +24,9 @@ Route::post('document/{id}/delete-post', 'DocumentController@deletePost')->name(
 Route::get('document/{id}/edit', 'DocumentController@edit')->name('document.edit');
 Route::post('document/edit-post', 'DocumentController@editPost')->name('document.edit-post');
 
+Route::get('ajax/authsalariesform/{id}', 'AjaxController@authSalariesForm')->name('ajax.authsalariesform');
+Route::get('ajax/gradeselect/{id}', 'AjaxController@gradeSelect')->name('ajax.gradeselect');
+
 Route::get('company', 'CompanyController@index')->name('company.index');
 
 Route::get('contract', 'ContractController@index')->name('contract.index');
@@ -33,7 +36,13 @@ Route::post('contract/store', 'ContractController@store')->name('contract.store'
 Route::post('contract/update', 'ContractController@update')->name('contract.update');
 
 Route::get('costcode', 'CostCodeController@index')->name('costcode.index');
+
 Route::get('job', 'JobController@index')->name('job.index');
+Route::get('job/create', 'JobController@create')->name('job.create');
+Route::get('job/edit/{id}', 'JobController@edit')->name('job.edit');
+Route::post('job/store', 'JobController@store')->name('job.store');
+Route::post('job/update', 'JobController@update')->name('job.update');
+
 Route::get('jobgrade', 'JobGradeController@index')->name('jobgrade.index');
 Route::get('position', 'PositionController@index')->name('position.index');
 Route::get('reportingunit', 'ReportingUnitController@index')->name('reportingunit.index');

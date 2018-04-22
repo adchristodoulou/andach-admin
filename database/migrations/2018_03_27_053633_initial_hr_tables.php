@@ -120,12 +120,11 @@ class InitialHrTables extends Migration
             $table->decimal('annual_hours_holiday', 8, 2);
             $table->boolean('bank_holidays_off')->nullable();
             $table->decimal('fte_hours_per_week', 8, 2);
-            $table->boolean('is_zero_hours')->nullable();
             $table->integer('notice_period_days');
             $table->decimal('overtime_multiplier', 8, 2);
             $table->integer('pension_match_delay_months')->default(0);
             $table->decimal('pension_match_up_to_percent', 8, 2);
-            $table->decimal('pension_multipler', 8, 2);
+            $table->decimal('pension_multiplier', 8, 2);
             $table->boolean('will_work_nights')->nullable();
             $table->timestamps();
         });
@@ -161,8 +160,9 @@ class InitialHrTables extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('category_id');
+            $table->integer('category_id')->nullable();
             $table->integer('company_id');
+            $table->integer('grade_id')->nullable();
             $table->text('job_description_summary')->nullable();
             $table->text('job_description_full')->nullable();
             $table->boolean('requires_dbs_check_standard')->nullable();

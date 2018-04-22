@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
 {
-    protected $fillable = ['name', 'annual_hours_holiday', 'bank_holidays_off', 'fte_hours_per_week', 'is_zero_hours', 'notice_period_days', 'overtime_multiplier', 'pension_match_delay_months', 'pension_match_up_to_percent', 'pension_multipler', 'will_work_nights'];
+    protected $fillable = ['name', 'annual_hours_holiday', 'bank_holidays_off', 'fte_hours_per_week', 'notice_period_days', 'overtime_multiplier', 'pension_match_delay_months', 'pension_match_up_to_percent', 'pension_multiplier', 'will_work_nights'];
 
     public function sickPayPeriods()
     {

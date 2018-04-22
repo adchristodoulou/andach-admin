@@ -19,6 +19,32 @@ class MainSeeder extends Seeder
         DB::table('companies')->insert(['name' => 'Trading Company Ltd']);
         DB::table('companies')->insert(['name' => 'Property Company Ltd']);
 
+        DB::table('contracts')->insert([
+            'name' => 'Standard 37 Hours',
+            'annual_hours_holiday' => 168,
+            'bank_holidays_off' => 1,
+            'fte_hours_per_week' => 37,
+            'notice_period_days' => 30,
+            'overtime_multiplier' => 1,
+            'pension_match_delay_months' => 3,
+            'pension_match_up_to_percent' => 5,
+            'pension_multiplier' => 1,
+            'will_work_nights' => 0,
+        ]);
+
+        DB::table('contracts')->insert([
+            'name' => 'Manager',
+            'annual_hours_holiday' => 250,
+            'bank_holidays_off' => 1,
+            'fte_hours_per_week' => 37,
+            'notice_period_days' => 90,
+            'overtime_multiplier' => 0,
+            'pension_match_delay_months' => 3,
+            'pension_match_up_to_percent' => 5,
+            'pension_multiplier' => 2,
+            'will_work_nights' => 0,
+        ]);
+
         DB::table('cost_codes')->insert(['name' => 'Holding Cost Code', 'company_id' => 1, 'parent_id' => 0]);
         DB::table('cost_codes')->insert(['name' => 'Nottingham Resturant', 'company_id' => 2, 'parent_id' => 0]);
         DB::table('cost_codes')->insert(['name' => 'Front of House', 'company_id' => 2, 'parent_id' => 2]);
