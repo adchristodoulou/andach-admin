@@ -261,8 +261,9 @@ class InitialHrTables extends Migration
         });
 
         Schema::create('positions', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('job_id');
-            $table->integer('site_id');
+            $table->integer('reporting_unit_id');
             $table->integer('area_id');
             $table->integer('company_id');
             $table->date('from_date');
@@ -273,6 +274,7 @@ class InitialHrTables extends Migration
             $table->boolean('can_manage_disciplinary')->nullable();
             $table->boolean('can_manage_timesheets')->nullable();
             $table->boolean('can_manage_holiday')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('reporting_units', function (Blueprint $table) {

@@ -12,4 +12,9 @@ class ReportingUnitArea extends Model
     use BelongsToReportingUnit;
 
     protected $table = 'reporting_units_areas';
+
+    public function position()
+    {
+    	return $this->hasMany('App\Position', 'area_id');
+    }
 }

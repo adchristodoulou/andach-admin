@@ -12,5 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(MainSeeder::class);
+
+        if (App::environment('testing')) 
+        {
+            $this->call(PHPUnitTestSeeder::class);
+        }
     }
 }

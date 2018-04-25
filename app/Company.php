@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Job;
 use App\JobGrade;
+use App\ReportingUnit;
 use App\ReportingUnitArea;
 use Form;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +33,21 @@ class Company extends Model
     public function formGradeSelect($default = null)
     {
         return Form::select('grade_id', JobGrade::where('company_id', $this->id)->pluck('name', 'id'), $default, ['class' => 'form-control']);
+    }
+
+    public function formJobSelect($default = null)
+    {
+        return Form::select('job_id', Job::where('company_id', $this->id)->pluck('name', 'id'), $default, ['class' => 'form-control']);
+    }
+
+    public function formReportingUnitSelect($default = null)
+    {
+        return Form::select('reporting_unit_id', ReportingUnit::where('company_id', $this->id)->pluck('name', 'id'), $default, ['class' => 'form-control']);
+    }
+
+    public function formReportingUnitAreaSelect($default = null)
+    {
+        return Form::select('area_id', ReportingUnit::where('company_id', $this->id)->pluck('name', 'id'), $default, ['class' => 'form-control']);
     }
 
 	public function jobs()

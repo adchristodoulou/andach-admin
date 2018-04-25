@@ -10,4 +10,9 @@ class ReportingUnit extends Model
 {
     use BelongsToCompany;
 	use NestableTrait;
+
+	public function positions()
+	{
+		return $this->hasMany('App\Position', 'reporting_unit_id');
+	}
 }

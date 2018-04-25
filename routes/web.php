@@ -26,6 +26,9 @@ Route::post('document/edit-post', 'DocumentController@editPost')->name('document
 
 Route::get('ajax/authsalariesform/{id}', 'AjaxController@authSalariesForm')->name('ajax.authsalariesform');
 Route::get('ajax/gradeselect/{id}', 'AjaxController@gradeSelect')->name('ajax.gradeselect');
+Route::get('ajax/jobselect/{id}', 'AjaxController@jobSelect')->name('ajax.jobselect');
+Route::get('ajax/reportingunitareaselect/{id}', 'AjaxController@reportingUnitAreaSelect')->name('ajax.reportingunitareaselect');
+Route::get('ajax/reportingunitselect/{id}', 'AjaxController@reportingUnitSelect')->name('ajax.reportingunitselect');
 
 Route::get('company', 'CompanyController@index')->name('company.index');
 
@@ -44,7 +47,10 @@ Route::post('job/store', 'JobController@store')->name('job.store');
 Route::post('job/update', 'JobController@update')->name('job.update');
 
 Route::get('jobgrade', 'JobGradeController@index')->name('jobgrade.index');
+
 Route::get('position', 'PositionController@index')->name('position.index');
+Route::post('position/store', 'PositionController@store')->name('position.store');
+
 Route::get('reportingunit', 'ReportingUnitController@index')->name('reportingunit.index');
 Route::get('reportingunitarea', 'ReportingUnitAreaController@index')->name('reportingunitarea.index');
 
