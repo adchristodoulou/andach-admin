@@ -4,6 +4,7 @@ namespace App;
 
 use App\Events\PositionSaving;
 use App\Traits\BelongsToCompany;
+use App\Traits\BelongsToJob;
 use App\Traits\BelongsToReportingUnit;
 use App\Traits\BelongsToReportingUnitArea;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Position extends Model
 {
     use BelongsToCompany;
+    use BelongsToJob;
     use BelongsToReportingUnit;
     use BelongsToReportingUnitArea;
 

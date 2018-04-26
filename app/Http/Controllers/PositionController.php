@@ -20,6 +20,14 @@ class PositionController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'company_id' => 'required',
+            'reporting_unit_id' => 'required',
+            'job_id' => 'required',
+            'from_date' => 'required',
+            'weekly_hours_authorised' => 'required',
+        ]);
+
     	$position = new Position($request->all());
     	$position->save();
 
