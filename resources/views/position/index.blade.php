@@ -26,10 +26,22 @@
 		<div class="col-10">{{ Form::select('company_id', $companies, null, ['class' => 'form-control', 'placeholder' => '-- please select company--']) }}</div>
 
 		<div class="col-2">{{ Form::label('reporting_unit_id', 'Reporting Unit:') }}</div>
-		<div class="col-10" id="reportingUnitDiv">-- please select company first --</div>
+		<div class="col-10" id="reportingUnitDiv">
+			@if (old('company_id'))
+				{{ $company->formReportingUnitSelect() }}
+			@else
+				-- please select company first --
+			@endif
+		</div>
 
 		<div class="col-2">{{ Form::label('job_id', 'Job:') }}</div>
-		<div class="col-10" id="jobDiv">-- please select company first --</div>
+		<div class="col-10" id="jobDiv">
+			@if (old('company_id'))
+				{{ $company->formJobSelect() }}
+			@else
+				-- please select company first --
+			@endif
+		</div>
 
 		<div class="col-2">{{ Form::label('from_date', 'From (Date):') }}</div>
 		<div class="col-10" id="jobDiv">{{ Form::date('from_date', null, ['class' => 'form-control']) }}</div>

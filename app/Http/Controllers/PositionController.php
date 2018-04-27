@@ -11,11 +11,18 @@ class PositionController extends Controller
 {
     public function index()
     {
-    	$positions = Position::all();
+    	$positions = Position::current()->get();
     	$companies = Company::all()->pluck('name', 'id');
     	$reportingunits = ReportingUnit::all()->pluck('name', 'id');
 
-    	return view('position.index', ['positions' => $positions, 'companies' => $companies, 'reportingunits' => $reportingunits]);
+    	if (old('company_id'))
+    	{
+    		$company = Company::find(old('company_id'));
+    	} else {
+    		$company = '';
+    	}
+
+    	return view('position.index', ['positions' => $positions, 'companies' => $companies, 'reportingunits' => $reportingunits, 'company' => $company]);
     }
 
     public function store(Request $request)
@@ -29,7 +36,10 @@ class PositionController extends Controller
         ]);
 
     	$position = new Position($request->all());
-    	$position->save();
+    	if (!$position->save())
+    	{
+    		session()->flash('there was an error');
+    	}
 
     	return redirect()->route('position.index');
     }
