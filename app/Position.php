@@ -30,8 +30,18 @@ class Position extends Model
 
     public function scopeCurrent($query)
     {
-    	return $query->where('to_date', '<=', date('Y-m-d'))
-    		->orWhereNull('to_date');
+    	return $this->scopeAtDate($query, now());
+    }
+
+    public function scopeAtDate($query, $date)
+    {
+        $date = date('Y-m-d', strtotime($date));
+
+        return $query->where('from_date', '<=', $date)
+            ->where(function ($query) use ($date) {
+                $query->where('to_date', '>=', $date)
+                    ->orWhereNull('to_date');
+            });
     }
 
     //Updates the to_date of this position according to the from_date of a new position designed to take over from it. 

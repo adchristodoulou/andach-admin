@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class PositionController extends Controller
 {
+    public function complete($date)
+    {
+        $positions = Position::atDate($date)->get();
+
+        return view('position.complete', ['positions' => $positions]);
+    }
+
     public function index()
     {
     	$positions = Position::current()->get();

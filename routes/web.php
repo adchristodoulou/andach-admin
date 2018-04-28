@@ -49,6 +49,7 @@ Route::post('job/update', 'JobController@update')->name('job.update');
 Route::get('jobgrade', 'JobGradeController@index')->name('jobgrade.index');
 
 Route::get('position', 'PositionController@index')->name('position.index');
+Route::get('position/complete/{date}', 'PositionController@complete')->name('position.complete');
 Route::post('position/store', 'PositionController@store')->name('position.store');
 
 Route::get('reportingunit', 'ReportingUnitController@index')->name('reportingunit.index');
