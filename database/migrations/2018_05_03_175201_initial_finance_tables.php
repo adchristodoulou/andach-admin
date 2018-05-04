@@ -89,7 +89,8 @@ class InitialFinanceTables extends Migration
             $table->increments('id');
             $table->integer('quantity_delivered');
             $table->integer('goods_delivery_note_id');
-            $table->integer('product_variation_id');
+            $table->integer('invoiceable_id');
+            $table->string('invoiceable_type');
             $table->string('description')->default('');
             $table->timestamps();
         });
@@ -108,7 +109,8 @@ class InitialFinanceTables extends Migration
             $table->increments('id');
             $table->integer('quantity_delivered');
             $table->integer('goods_receipt_note_id');
-            $table->integer('product_variation_id');
+            $table->integer('invoiceable_id');
+            $table->string('invoiceable_type');
             $table->string('description')->default('');
             $table->timestamps();
         });
@@ -204,7 +206,8 @@ class InitialFinanceTables extends Migration
         Schema::create('purchase_invoices_lines', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('purchase_invoice_id');
-            $table->integer('product_variation_id')->default(0);
+            $table->integer('invoiceable_id')->default(0);
+            $table->string('invoiceable_type')->default('');
             $table->decimal('total_net', 8, 2)->default(0);
             $table->decimal('total_vat', 8, 2)->default(0);
             $table->decimal('total_gross', 8, 2)->default(0);
@@ -216,6 +219,34 @@ class InitialFinanceTables extends Migration
             $table->integer('expense_code_id');
             $table->string('name')->default('');
             $table->decimal('current_value', 8, 2)->default(0);
+            $table->timestamps();
+        });
+
+        Schema::create('quantity_purchased_reconciliation', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('quantity_reconciled');
+            $table->timestamps();
+        });
+
+        Schema::create('quantity_purchased_reconciliation_lines', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('quantity_purchased_reconciliation_id');
+            $table->integer('reconcileable_id')->default(0);
+            $table->string('reconcileable_type')->default('');
+            $table->timestamps();
+        });
+
+        Schema::create('quantity_sold_reconciliation', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('quantity_reconciled');
+            $table->timestamps();
+        });
+
+        Schema::create('quantity_sold_reconciliation_lines', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('quantity_purchased_reconciliation_id');
+            $table->integer('reconcileable_id')->default(0);
+            $table->string('reconcileable_type')->default('');
             $table->timestamps();
         });
 
@@ -239,7 +270,8 @@ class InitialFinanceTables extends Migration
         Schema::create('sales_invoices_lines', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sales_invoice_id');
-            $table->integer('product_variation_id')->default(0);
+            $table->integer('invoiceable_id')->default(0);
+            $table->string('invoiceable_type')->default('');
             $table->decimal('total_net', 8, 2)->default(0);
             $table->decimal('total_vat', 8, 2)->default(0);
             $table->decimal('total_gross', 8, 2)->default(0);
@@ -315,6 +347,10 @@ class InitialFinanceTables extends Migration
         Schema::dropIfExists('purchase_invoices');
         Schema::dropIfExists('purchase_invoices_lines');
         Schema::dropIfExists('purchase_ledgers');
+        Schema::dropIfExists('quantity_purchased_reconciliation');
+        Schema::dropIfExists('quantity_purchased_reconciliation_lines');
+        Schema::dropIfExists('quantity_sold_reconciliation');
+        Schema::dropIfExists('quantity_sold_reconciliation_lines');
         Schema::dropIfExists('sales_invoices');
         Schema::dropIfExists('sales_invoices_lines');
         Schema::dropIfExists('sales_ledgers');
