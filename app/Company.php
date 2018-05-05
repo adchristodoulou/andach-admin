@@ -60,6 +60,11 @@ class Company extends Model
     	return $this->hasMany('App\JobGrade', 'company_id');
     }
 
+    public function journals()
+    {
+        return $this->hasMany('App\Journal', 'company_id');
+    }
+
     public function positions()
     {
     	return $this->hasMany('App\Position', 'company_id');

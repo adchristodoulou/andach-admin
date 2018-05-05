@@ -119,6 +119,9 @@ class InitialFinanceTables extends Migration
             $table->increments('id');
             $table->string('name')->default('');
             $table->string('description')->default('');
+            $table->integer('person_id');
+            $table->integer('company_id');
+            $table->integer('financial_period_id');
             $table->timestamps();
         });
 
