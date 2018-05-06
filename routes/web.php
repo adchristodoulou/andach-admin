@@ -24,6 +24,10 @@ Route::post('document/{id}/delete-post', 'DocumentController@deletePost')->name(
 Route::get('document/{id}/edit', 'DocumentController@edit')->name('document.edit');
 Route::post('document/edit-post', 'DocumentController@editPost')->name('document.edit-post');
 
+/********************
+* HR ROUTES
+********************/
+
 Route::get('ajax/authsalariesform/{id}', 'AjaxController@authSalariesForm')->name('ajax.authsalariesform');
 Route::get('ajax/gradeselect/{id}', 'AjaxController@gradeSelect')->name('ajax.gradeselect');
 Route::get('ajax/jobselect/{id}', 'AjaxController@jobSelect')->name('ajax.jobselect');
@@ -54,5 +58,27 @@ Route::post('position/store', 'PositionController@store')->name('position.store'
 
 Route::get('reportingunit', 'ReportingUnitController@index')->name('reportingunit.index');
 Route::get('reportingunitarea', 'ReportingUnitAreaController@index')->name('reportingunitarea.index');
+
+/********************
+* FINANCE ROUTES
+********************/
+
+Route::get('deliverynote', 'DeliveryNoteController@index')->name('deliverynote.index');
+Route::get('deliverynote/create', 'DeliveryNoteController@create')->name('deliverynote.create');
+Route::get('deliverynote/edit/{id}', 'DeliveryNoteController@edit')->name('deliverynote.edit');
+Route::post('deliverynote/store', 'DeliveryNoteController@store')->name('deliverynote.store');
+Route::post('deliverynote/update', 'DeliveryNoteController@update')->name('deliverynote.update');
+
+Route::get('product', 'ProductController@index')->name('product.index');
+Route::get('product/create', 'ProductController@create')->name('product.create');
+Route::get('product/edit/{id}', 'ProductController@edit')->name('product.edit');
+Route::post('product/store', 'ProductController@store')->name('product.store');
+Route::post('product/update', 'ProductController@update')->name('product.update');
+
+Route::get('purchaseinvoice', 'PurchaseInvoiceController@index')->name('purchaseinvoice.index');
+Route::get('purchaseinvoice/create', 'PurchaseInvoiceController@create')->name('purchaseinvoice.index');
+Route::get('purchaseinvoice/edit/{id}', 'PurchaseInvoiceController@edit')->name('purchaseinvoice.edit');
+Route::post('purchaseinvoice/store', 'PurchaseInvoiceController@store')->name('purchaseinvoice.store');
+Route::post('purchaseinvoice/update', 'PurchaseInvoiceController@update')->name('purchaseinvoice.update');
 
 Auth::routes();
