@@ -158,8 +158,6 @@ class InitialFinanceTables extends Migration
             $table->increments('id');
             $table->integer('product_variation_id');
             $table->integer('product_attribute_value_id');
-            $table->decimal('purchase_price', 8, 2)->default(0);
-            $table->decimal('sale_price', 8, 2)->default(0);
             $table->timestamps();
         });
 
@@ -186,6 +184,8 @@ class InitialFinanceTables extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('product_id');
+            $table->decimal('purchase_price', 8, 2)->default(0);
+            $table->decimal('sale_price', 8, 2)->default(0);
             $table->timestamps();
         });
 
