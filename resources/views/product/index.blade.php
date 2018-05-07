@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Products</h1>
-<div class="alert alert-info">?</div>
+<div class="alert alert-info">Click here to <a href="{{ route('product.create') }}">create a product</a>.</div>
 
 <div class="row">
 	<div class="col-3">Name</div>

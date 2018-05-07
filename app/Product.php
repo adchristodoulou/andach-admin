@@ -2,12 +2,33 @@
 
 namespace App;
 
+use App\ProductAttributeValue;
+use App\ProductVariation;
+use Form;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     protected $fillable = ['name'];
     protected $table = 'products';
+
+    public function addVariation($array)
+    {
+        if ($this->hasVariationWithValues($array['attribute']))
+        {
+            return false;
+        }
+
+        $variation = new ProductVariation($array);
+        $this->variations()->save($variation);
+
+        foreach ($array['attribute'] as $attributeID => $valueID)
+        {
+            $variation->addAttributeValue($valueID);
+        }
+
+        return true;
+    }
 
     public function attributes()
     {
@@ -17,6 +38,25 @@ class Product extends Model
     public function canEditAttributes()
     {
         return $this->variations()->count() == 0;
+    }
+
+    public function getAddVariationFieldsAttribute()
+    {
+        $return = '';
+
+        if ($this->attributes()->count())
+        {
+
+            foreach ($this->attributes()->get() as $attribute)
+            {
+                $return .= '<div class="col-2">'.Form::label('attribute['.$attribute->id.']', $attribute->name).'</div>
+                    <div class="col-10">'.
+                    Form::select('attribute['.$attribute->id.']', $attribute->formArray(), null, ['class' => 'form-control'])
+                    .'</div>';
+            }
+        }
+
+        return $return;
     }
 
     public function getEditAttributeHeaderAttribute()
@@ -33,10 +73,25 @@ class Product extends Model
 
             $return .= '</div>';
         } else {
-            $return = '<div class="col-4">-- no attributes --</div>';
+            $return = '<div class="row"><div class="col-4">-- no attributes --</div></div>';
         }
 
         return $return;
+    }
+
+    public function hasVariationWithValues($valuesArray)
+    {
+        foreach ($this->variations as $variation)
+        {
+            $theseAttributes = $variation->productAttributesValues->pluck('id')->toArray();
+
+            if (!array_diff($valuesArray, $theseAttributes) && !array_diff($theseAttributes, $valuesArray))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function setAllowedAttributes($array)

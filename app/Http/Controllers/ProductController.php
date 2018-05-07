@@ -43,6 +43,24 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
+        $product = Product::find($request->input('id'));
 
+        switch ($request->action)
+        {
+            case 'addvariation' :
+                if ($product->addVariation($request->all()))
+                {
+                    session()->flash('success', 'Variation Added Successfully');
+                } else {
+                    session()->flash('danger', 'Variation not added. Does a combination exist already?');
+                }
+                break;
+
+            case 'editproduct' :
+
+                break;
+        }
+
+        return redirect()->route('product.edit', $product->id);
     }
 }

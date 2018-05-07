@@ -9,6 +9,11 @@ class ProductAttribute extends Model
     protected $fillable = ['name'];
     protected $table = 'products_attributes';
 
+    public function formArray()
+    {
+        return $this->values()->pluck('name', 'id');
+    }
+
     public function products()
     {
     	return $this->belongsToMany('App\Product', 'link_products_products_attributes', 'product_attribute_id', 'product_id');

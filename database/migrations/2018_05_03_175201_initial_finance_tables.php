@@ -184,6 +184,7 @@ class InitialFinanceTables extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('product_id');
+            $table->string('supplier_code')->default('');
             $table->decimal('purchase_price', 8, 2)->default(0);
             $table->decimal('sale_price', 8, 2)->default(0);
             $table->timestamps();
