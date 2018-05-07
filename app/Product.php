@@ -19,6 +19,26 @@ class Product extends Model
         return $this->variations()->count() == 0;
     }
 
+    public function getEditAttributeHeaderAttribute()
+    {
+        if ($this->attributes()->count())
+        {
+            $width = 12 / $this->attributes()->count();
+            $return = '<div class="row">';
+
+            foreach ($this->attributes()->get() as $attribute)
+            {
+                $return .= '<div class="col-'.$width.'">'.$attribute->name.'</div>';
+            }
+
+            $return .= '</div>';
+        } else {
+            $return = '<div class="col-4">-- no attributes --</div>';
+        }
+
+        return $return;
+    }
+
     public function setAllowedAttributes($array)
     {
         $this->attributes()->sync($array);

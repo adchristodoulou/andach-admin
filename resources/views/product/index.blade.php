@@ -11,7 +11,7 @@
 
 @foreach ($products as $product)
 	<div class="row">
-		<div class="col-3">{{ $product->name }}</div>
+		<div class="col-3"><a href="{{ route('product.edit', $product->id) }}">{{ $product->name }}</a></div>
 		<div class="col-9"></div>
 	</div>
 @endforeach
