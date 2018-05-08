@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\ProductAttribute;
+use App\ProductVariation;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -57,7 +58,13 @@ class ProductController extends Controller
                 break;
 
             case 'editproduct' :
-
+                $product->update($request->all());
+                
+                if ($delete = $request->input('delete'))
+                {
+                    ProductVariation::destroy($delete);
+                    session()->flash('success', 'The Variation(s) have been deleted.');
+                }
                 break;
         }
 
