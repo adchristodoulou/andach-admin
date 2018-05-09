@@ -18,4 +18,9 @@ class SalesInvoiceLine extends Model
     {
     	return $this->belongs('App\SalesInvoice', 'sales_invoice_id');
     }
+    
+    public function reconciliations()
+    {
+        return $this->morphMany('App\QuantitySoldReconciliationLine', 'reconcilable');
+    }
 }

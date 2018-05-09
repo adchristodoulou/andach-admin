@@ -18,4 +18,9 @@ class GoodsReceiptNoteLine extends Model
     {
     	return $this->belongsTo('App\GoodsDeliveryNote', 'goods_receipt_note_id');
     }
+    
+    public function reconciliations()
+    {
+        return $this->morphMany('App\QuantityPurchasedReconciliationLine', 'reconcilable');
+    }
 }
