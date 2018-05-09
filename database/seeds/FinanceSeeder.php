@@ -29,9 +29,9 @@ class FinanceSeeder extends Seeder
         DB::table('expense_codes')->insert(['name' => 'Liabilities', 'company_id' => 3]);
         DB::table('expense_codes')->insert(['name' => 'Equity', 'company_id' => 3]);
 
-        DB::table('financial_years')->insert(['name' => '2018/19 Financial Year', 'company_id' => 1]);
-        DB::table('financial_years')->insert(['name' => '2018/19 Financial Year', 'company_id' => 2]);
-        DB::table('financial_years')->insert(['name' => '2018/19 Financial Year', 'company_id' => 3]);
+        DB::table('financial_years')->insert(['name' => '2018/19 Financial Year', 'company_id' => 1, 'number_of_actual_periods_per_year' => 12]);
+        DB::table('financial_years')->insert(['name' => '2018/19 Financial Year', 'company_id' => 2, 'number_of_actual_periods_per_year' => 12]);
+        DB::table('financial_years')->insert(['name' => '2018/19 Financial Year', 'company_id' => 3, 'number_of_actual_periods_per_year' => 12]);
 
         for ($i = 1; $i <= 12; $i++)
         {
@@ -40,24 +40,22 @@ class FinanceSeeder extends Seeder
         	DB::table('financial_periods')->insert(['name' => '2018/19 Month '.$i, 'order' => $i, 'financial_year_id' => 3]);
         }
 
-        DB::table('bank_accounts')->insert(['name' => 'Barclays Account '.$i, 'expense_code_id' => 3]);
-        DB::table('bank_accounts')->insert(['name' => 'Halifax Account '.$i, 'expense_code_id' => 3]);
-        DB::table('bank_accounts')->insert(['name' => 'Lloyds Account '.$i, 'expense_code_id' => 8]);
+        DB::table('bank_accounts')->insert(['name' => 'Holding Barclays Account '.$i, 'expense_code_id' => 3]);
+        DB::table('bank_accounts')->insert(['name' => 'Holding Halifax Account '.$i, 'expense_code_id' => 3]);
+        DB::table('bank_accounts')->insert(['name' => 'Trading Lloyds Account '.$i, 'expense_code_id' => 8]);
         DB::table('fixed_asset_categories')->insert(['name' => 'Intangible Assets', 'expense_code_id' => 3]);
         DB::table('fixed_asset_categories')->insert(['name' => 'Kitchen Equipment', 'expense_code_id' => 8]);
         DB::table('fixed_asset_categories')->insert(['name' => 'Cars', 'expense_code_id' => 8]);
         DB::table('fixed_asset_categories')->insert(['name' => 'Property', 'expense_code_id' => 13]);
         DB::table('fixed_asset_categories')->insert(['name' => 'Fixtures and Fittings', 'expense_code_id' => 13]);
-        DB::table('purchase_ledgers')->insert(['name' => 'Sales Ledger', 'expense_code_id' => 4]);
-        DB::table('purchase_ledgers')->insert(['name' => 'Purchase Ledger', 'expense_code_id' => 9]);
-        DB::table('purchase_ledgers')->insert(['name' => 'Expense Ledger', 'expense_code_id' => 9]);
-        DB::table('purchase_ledgers')->insert(['name' => 'Sales Ledger', 'expense_code_id' => 14]);
-        DB::table('sales_ledgers')->insert(['name' => 'Sales Ledger', 'expense_code_id' => 3]);
-        DB::table('sales_ledgers')->insert(['name' => 'Sales Ledger', 'expense_code_id' => 8]);
-        DB::table('sales_ledgers')->insert(['name' => 'Sales Ledger', 'expense_code_id' => 13]);
-        DB::table('stock_ledgers')->insert(['name' => 'Stock Ledger', 'expense_code_id' => 3]);
-        DB::table('stock_ledgers')->insert(['name' => 'Stock Ledger', 'expense_code_id' => 8]);
-        DB::table('stock_ledgers')->insert(['name' => 'Stock Ledger', 'expense_code_id' => 13]);
+        DB::table('purchase_ledgers')->insert(['name' => 'Holding Purchase Ledger', 'expense_code_id' => 4]);
+        DB::table('purchase_ledgers')->insert(['name' => 'Trading Purchase Ledger', 'expense_code_id' => 9]);
+        DB::table('purchase_ledgers')->insert(['name' => 'Trading Expense Ledger', 'expense_code_id' => 9]);
+        DB::table('purchase_ledgers')->insert(['name' => 'Property Purchase Ledger', 'expense_code_id' => 14]);
+        DB::table('sales_ledgers')->insert(['name' => 'Holding Sales Ledger', 'expense_code_id' => 3]);
+        DB::table('sales_ledgers')->insert(['name' => 'Trading Sales Ledger', 'expense_code_id' => 8]);
+        DB::table('sales_ledgers')->insert(['name' => 'Property Sales Ledger', 'expense_code_id' => 13]);
+        DB::table('stock_ledgers')->insert(['name' => 'Trading Stock Ledger', 'expense_code_id' => 8]);
 
         DB::table('products_attributes')->insert(['name' => 'Pasta Type']);
         DB::table('products_attributes')->insert(['name' => 'Spicyness']);

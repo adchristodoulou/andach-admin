@@ -2,11 +2,13 @@
 
 namespace App;
 
-use App\Trait\ReconciledStockOut;
+use App\Traits\BelongsToProductVariation;
+use App\Traits\ReconciledStockOut;
 use Illuminate\Database\Eloquent\Model;
 
 class GoodsDeliveryNoteLine extends Model
 {
+    use BelongsToProductVariation;
 	use ReconciledStockOut;
 
 	protected $fillable = ['quantity_delivered', 'goods_delivery_note_id', 'description'];

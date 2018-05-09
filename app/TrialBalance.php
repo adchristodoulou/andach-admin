@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Trait\BelongsToCompany;
-use App\Trait\BelongsToCostCode;
-use App\Trait\BelongsToExpenseCode;
+use App\Traits\BelongsToCompany;
+use App\Traits\BelongsToCostCode;
+use App\Traits\BelongsToExpenseCode;
 use Illuminate\Database\Eloquent\Model;
 
 class TrialBalance extends Model

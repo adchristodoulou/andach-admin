@@ -29,6 +29,11 @@ Route::post('document/edit-post', 'DocumentController@editPost')->name('document
 ********************/
 
 Route::get('ajax/authsalariesform/{id}', 'AjaxController@authSalariesForm')->name('ajax.authsalariesform');
+Route::get('ajax/costcodeselect/bankaccount/{id}', 'AjaxController@costCodeSelectBankAccount')->name('ajax.costcodeselectbankaccount');
+Route::get('ajax/costcodeselect/fixedassetcategory/{id}', 'AjaxController@costCodeSelectFixedAssetCategory')->name('ajax.costcodeselectfixedassetcategory');
+Route::get('ajax/costcodeselect/purchaseledger/{id}', 'AjaxController@costCodeSelectPurchaseLedger')->name('ajax.costcodeselectpurchaseledger');
+Route::get('ajax/costcodeselect/salesledger/{id}', 'AjaxController@costCodeSelectSalesLedger')->name('ajax.costcodeselectsalesledger');
+Route::get('ajax/costcodeselect/stockledger/{id}', 'AjaxController@costCodeSelectStockLedger')->name('ajax.costcodeselectstockledger');
 Route::get('ajax/gradeselect/{id}', 'AjaxController@gradeSelect')->name('ajax.gradeselect');
 Route::get('ajax/jobselect/{id}', 'AjaxController@jobSelect')->name('ajax.jobselect');
 Route::get('ajax/reportingunitareaselect/{id}', 'AjaxController@reportingUnitAreaSelect')->name('ajax.reportingunitareaselect');

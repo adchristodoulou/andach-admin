@@ -17,7 +17,7 @@ class SalesInvoice extends Model
 	use HasSingleFilename;
 	use IsLedgerComponent;
 
-    protected $fillable = ['ledger_id', 'cost_code_id', 'document_date', 'name', 'description', 'current_value', 'current_quantity', 'person_id', 'filename', 'total_net', 'total_vat', 'total_gross'];
+    protected $fillable = ['ledger_id', 'cost_code_id', 'document_date', 'name', 'description', 'current_value', 'current_quantity', 'person_id', 'filename', 'net', 'vat', 'gross'];
     protected $table = 'sales_invoices';
 
     public function lines()

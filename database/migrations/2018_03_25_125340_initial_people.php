@@ -18,7 +18,7 @@ class InitialPeople extends Migration
             $table->string('first_name');
             $table->string('middle_names');
             $table->string('last_name');
-            $table->string('preferred_name');
+            $table->string('name');
             $table->date('date_of_birth');
             $table->timestamps();
         });

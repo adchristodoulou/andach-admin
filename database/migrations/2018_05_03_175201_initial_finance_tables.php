@@ -43,13 +43,18 @@ class InitialFinanceTables extends Migration
         Schema::create('financial_years', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->date('from_date')->nullable();
+            $table->date('to_date')->nullable();
             $table->integer('company_id');
+            $table->integer('number_of_actual_periods_per_year');
             $table->timestamps();
         });
 
         Schema::create('financial_periods', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->date('from_date')->nullable();
+            $table->date('to_date')->nullable();
             $table->integer('order')->default(0);
             $table->integer('financial_year_id');
             $table->timestamps();
@@ -80,6 +85,7 @@ class InitialFinanceTables extends Migration
             $table->integer('person_id');
             $table->integer('stock_holding_id');
             $table->date('document_date');
+            $table->date('finalised_date')->nullable();
             $table->string('name')->default('');
             $table->string('description')->default('');
             $table->timestamps();
@@ -88,6 +94,8 @@ class InitialFinanceTables extends Migration
         Schema::create('goods_delivery_notes_lines', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantity_delivered');
+            $table->integer('unreconciled_quantity');
+            $table->integer('product_variation_id')->default(0);
             $table->integer('goods_delivery_note_id');
             $table->integer('invoiceable_id');
             $table->string('invoiceable_type');
@@ -100,6 +108,7 @@ class InitialFinanceTables extends Migration
             $table->integer('person_id');
             $table->integer('stock_holding_id');
             $table->date('document_date');
+            $table->date('finalised_date')->nullable();
             $table->string('name')->default('');
             $table->string('description')->default('');
             $table->timestamps();
@@ -108,6 +117,8 @@ class InitialFinanceTables extends Migration
         Schema::create('goods_receipt_notes_lines', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantity_delivered');
+            $table->integer('unreconciled_quantity');
+            $table->integer('product_variation_id')->default(0);
             $table->integer('goods_receipt_note_id');
             $table->integer('invoiceable_id');
             $table->string('invoiceable_type');
@@ -195,26 +206,31 @@ class InitialFinanceTables extends Migration
             $table->integer('ledger_id');
             $table->integer('cost_code_id');
             $table->date('document_date');
+            $table->date('finalised_date')->nullable();
             $table->string('name')->default('');
             $table->string('description')->default('');
             $table->decimal('current_value', 8, 2)->default(0);
             $table->decimal('current_quantity', 8, 2)->default(0);
-            $table->integer('person_id');
-            $table->string('filename');
-            $table->decimal('total_net', 8, 2)->default(0);
-            $table->decimal('total_vat', 8, 2)->default(0);
-            $table->decimal('total_gross', 8, 2)->default(0);
+            $table->integer('person_id')->nullable();
+            $table->string('filename')->nullable();
+            $table->decimal('net', 8, 2)->default(0);
+            $table->decimal('vat', 8, 2)->default(0);
+            $table->decimal('gross', 8, 2)->default(0);
+            $table->decimal('unreconciled_gross')->default(0);
             $table->timestamps();
         });
 
         Schema::create('purchase_invoices_lines', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('purchase_invoice_id');
+            $table->string('description')->default('');
+            $table->integer('product_variation_id')->default(0);
+            $table->integer('unreconciled_quantity')->default(0);
             $table->integer('invoiceable_id')->default(0);
             $table->string('invoiceable_type')->default('');
-            $table->decimal('total_net', 8, 2)->default(0);
-            $table->decimal('total_vat', 8, 2)->default(0);
-            $table->decimal('total_gross', 8, 2)->default(0);
+            $table->decimal('net', 8, 2)->default(0);
+            $table->decimal('vat', 8, 2)->default(0);
+            $table->decimal('gross', 8, 2)->default(0);
             $table->timestamps();
         });
 
@@ -259,26 +275,31 @@ class InitialFinanceTables extends Migration
             $table->integer('ledger_id');
             $table->integer('cost_code_id');
             $table->date('document_date');
+            $table->date('finalised_date')->nullable();
             $table->string('name')->default('');
             $table->string('description')->default('');
             $table->decimal('current_value', 8, 2)->default(0);
             $table->decimal('current_quantity', 8, 2)->default(0);
-            $table->integer('person_id');
-            $table->string('filename');
-            $table->decimal('total_net', 8, 2)->default(0);
-            $table->decimal('total_vat', 8, 2)->default(0);
-            $table->decimal('total_gross', 8, 2)->default(0);
+            $table->integer('person_id')->nullable();
+            $table->string('filename')->nullable();
+            $table->decimal('net', 8, 2)->default(0);
+            $table->decimal('vat', 8, 2)->default(0);
+            $table->decimal('gross', 8, 2)->default(0);
+            $table->decimal('unreconciled_gross')->default(0);
             $table->timestamps();
         });
 
         Schema::create('sales_invoices_lines', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sales_invoice_id');
+            $table->string('description')->default('');
+            $table->integer('product_variation_id')->default(0);
+            $table->integer('unreconciled_quantity')->default(0);
             $table->integer('invoiceable_id')->default(0);
             $table->string('invoiceable_type')->default('');
-            $table->decimal('total_net', 8, 2)->default(0);
-            $table->decimal('total_vat', 8, 2)->default(0);
-            $table->decimal('total_gross', 8, 2)->default(0);
+            $table->decimal('net', 8, 2)->default(0);
+            $table->decimal('vat', 8, 2)->default(0);
+            $table->decimal('gross', 8, 2)->default(0);
             $table->timestamps();
         });
 

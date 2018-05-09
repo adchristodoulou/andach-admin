@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 trait BelongsToExpenseCode
 {
-	public function expenseCode()
+    public function expenseCode()
     {
     	return $this->belongsTo('App\ExpenseCode', 'expense_code_id');
     }
@@ -17,5 +17,10 @@ trait BelongsToExpenseCode
     	{
     		return $this->expenseCode->name;
     	}
+    }
+    
+    public function getCompanyIdAttribute()
+    {
+        return $this->expenseCode->company_id;
     }
 }

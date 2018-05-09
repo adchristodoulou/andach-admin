@@ -2,11 +2,13 @@
 
 namespace App;
 
-use App\Trait\ReconciledStockIn;
+use App\Traits\BelongsToProductVariation;
+use App\Traits\ReconciledStockIn;
 use Illuminate\Database\Eloquent\Model;
 
 class GoodsReceiptNoteLine extends Model
 {
+    use BelongsToProductVariation;
     use ReconciledStockIn;
 
 	protected $fillable = ['quantity_delivered', 'goods_receipt_note_id', 'description'];

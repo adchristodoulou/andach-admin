@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 trait IsLedger
 {
-	public function journalLines()
+    public function journalLines()
 	{
 		return $this->morphMany('App\JournalLine', 'ledgerable');
 	}

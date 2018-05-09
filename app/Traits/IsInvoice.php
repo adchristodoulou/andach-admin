@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Http\Request;
 
-trait HasSingleFilename
+trait IsInvoice
 {
-	
+    
 }

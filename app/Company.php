@@ -29,6 +29,11 @@ class Company extends Model
 
         return $return;
     }
+    
+    public function formCostCodes($default = null)
+    {
+        return Form::select('cost_code_id', CostCode::where('company_id', $this->id)->pluck('name', 'id'), $default, ['class' => 'form-control']);
+    }
 
     public function formGradeSelect($default = null)
     {

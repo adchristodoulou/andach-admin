@@ -7,7 +7,7 @@ $factory->define(App\Person::class, function (Faker $faker) {
         'first_name' => $faker->firstName,
         'middle_names' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'preferred_name' => $faker->name,
+        'name' => $faker->name,
         'date_of_birth' => $faker->date,
     ];
 });

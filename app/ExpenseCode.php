@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Trait\BelongsToCompany;
+use App\Traits\BelongsToCompany;
 use Illuminate\Database\Eloquent\Model;
 
 class ExpenseCode extends Model
