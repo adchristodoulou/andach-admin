@@ -71,18 +71,21 @@ Route::get('reportingunitarea', 'ReportingUnitAreaController@index')->name('repo
 Route::get('deliverynote', 'DeliveryNoteController@index')->name('deliverynote.index');
 Route::get('deliverynote/create', 'DeliveryNoteController@create')->name('deliverynote.create');
 Route::get('deliverynote/edit/{id}', 'DeliveryNoteController@edit')->name('deliverynote.edit');
+Route::get('deliverynote/show/{id}', 'DeliveryNoteController@show')->name('deliverynote.show');
 Route::post('deliverynote/store', 'DeliveryNoteController@store')->name('deliverynote.store');
 Route::post('deliverynote/update', 'DeliveryNoteController@update')->name('deliverynote.update');
 
 Route::get('product', 'ProductController@index')->name('product.index');
 Route::get('product/create', 'ProductController@create')->name('product.create');
 Route::get('product/edit/{id}', 'ProductController@edit')->name('product.edit');
+Route::get('product/show/{id}', 'ProductController@show')->name('product.show');
 Route::post('product/store', 'ProductController@store')->name('product.store');
 Route::post('product/update', 'ProductController@update')->name('product.update');
 
 Route::get('purchaseinvoice', 'PurchaseInvoiceController@index')->name('purchaseinvoice.index');
-Route::get('purchaseinvoice/create', 'PurchaseInvoiceController@create')->name('purchaseinvoice.index');
+Route::get('purchaseinvoice/create', 'PurchaseInvoiceController@create')->name('purchaseinvoice.create');
 Route::get('purchaseinvoice/edit/{id}', 'PurchaseInvoiceController@edit')->name('purchaseinvoice.edit');
+Route::get('purchaseinvoice/show/{id}', 'PurchaseInvoiceController@show')->name('purchaseinvoice.show');
 Route::post('purchaseinvoice/store', 'PurchaseInvoiceController@store')->name('purchaseinvoice.store');
 Route::post('purchaseinvoice/update', 'PurchaseInvoiceController@update')->name('purchaseinvoice.update');
 

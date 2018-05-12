@@ -12,9 +12,9 @@ class FixedAsset extends Model
 	use IsLedgerComponent;
 
     protected $table = 'fixed_assets';
-
-    public function fixedAssetCategory()
+    
+    public function ledger()
     {
-    	return $this->belongsTo('App\fixedAssetCategory', 'ledger_id');
+        return $this->belongsTo('App\FixedAssetCategory', 'ledger_id');
     }
 }

@@ -26,6 +26,7 @@ class InitialFinanceTables extends Migration
             $table->integer('ledger_id');
             $table->integer('cost_code_id');
             $table->date('document_date');
+            $table->date('finalised_date')->nullable();
             $table->string('name')->default('');
             $table->string('description')->default('');
             $table->decimal('current_value', 8, 2)->default(0);
@@ -73,6 +74,7 @@ class InitialFinanceTables extends Migration
             $table->integer('ledger_id');
             $table->integer('cost_code_id');
             $table->date('document_date');
+            $table->date('finalised_date')->nullable();
             $table->string('name')->default('');
             $table->string('description')->default('');
             $table->decimal('current_value', 8, 2)->default(0);
@@ -130,6 +132,7 @@ class InitialFinanceTables extends Migration
             $table->increments('id');
             $table->string('name')->default('');
             $table->string('description')->default('');
+            $table->date('finalised_date')->nullable();
             $table->integer('person_id');
             $table->integer('company_id');
             $table->integer('financial_period_id');
@@ -316,6 +319,7 @@ class InitialFinanceTables extends Migration
             $table->integer('ledger_id');
             $table->integer('cost_code_id');
             $table->date('document_date');
+            $table->date('finalised_date')->nullable();
             $table->string('name')->default('');
             $table->string('description')->default('');
             $table->decimal('current_value', 8, 2)->default(0);

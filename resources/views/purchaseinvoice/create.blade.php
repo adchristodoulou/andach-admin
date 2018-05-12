@@ -30,17 +30,20 @@
     <div class="alert alert-info">If you want to enter invoice lines separately, leave the below blank. Else enter the net / VAT / gross amount below. </div>
     
     <div class="row">
-		<div class="col-2">{{ Form::label('description', 'Line Description') }}</div>
-        <div class="col-10">{{ Form::text('description', null, ['class' => 'form-control']) }}</div>
+		<div class="col-2">{{ Form::label('line_description', 'Line Description') }}</div>
+        <div class="col-10">{{ Form::text('line_description', null, ['class' => 'form-control']) }}</div>
+        
+		<div class="col-2">{{ Form::label('line_product_variation_id', 'Product') }}</div>
+        <div class="col-10">{{ Form::select('line_product_variation_id', $variations, null, ['class' => 'form-control']) }}</div>
 
-		<div class="col-2">{{ Form::label('net', 'Net') }}</div>
-        <div class="col-10">{{ Form::text('net', null, ['class' => 'form-control']) }}</div>
+		<div class="col-2">{{ Form::label('line_net', 'Net') }}</div>
+        <div class="col-10">{{ Form::text('line_net', null, ['class' => 'form-control']) }}</div>
 
-		<div class="col-2">{{ Form::label('vat', 'VAT') }}</div>
-        <div class="col-10">{{ Form::text('vat', null, ['class' => 'form-control']) }}</div>
+		<div class="col-2">{{ Form::label('line_vat', 'VAT') }}</div>
+        <div class="col-10">{{ Form::text('line_vat', null, ['class' => 'form-control']) }}</div>
 
-		<div class="col-2">{{ Form::label('gross', 'Gross') }}</div>
-        <div class="col-10">{{ Form::text('gross', null, ['class' => 'form-control']) }}</div>
+		<div class="col-2">{{ Form::label('line_gross', 'Gross') }}</div>
+        <div class="col-10">{{ Form::text('line_gross', null, ['class' => 'form-control']) }}</div>
         
         <div class="col-12">{{ Form::submit('Add Purchase Invoice', ['class' => 'form-control btn btn-success']) }}</div>
     </div>

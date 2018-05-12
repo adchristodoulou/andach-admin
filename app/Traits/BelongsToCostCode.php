@@ -8,7 +8,7 @@ trait BelongsToCostCode
 {
 	public function costCode()
     {
-    	return $this->belongsTo('App\ExpenseCode', 'expense_code_id');
+    	return $this->belongsTo('App\CostCode', 'cost_code_id');
     }
 
     public function getcostCodeNameAttribute()

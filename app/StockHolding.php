@@ -28,4 +28,9 @@ class StockHolding extends Model
     {
     	return $this->hasMany('App\GoodsReceiptNoteLine', 'stock_holding_id');
     }
+    
+    public function ledger()
+    {
+        return $this->belongsTo('App\StockLedger', 'ledger_id');
+    }
 }
